@@ -27,7 +27,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://www.shaikhfaiz.top/',
     credentials: true,
   })
 );
