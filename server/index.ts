@@ -27,7 +27,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: 'https://www.shaikhfaiz.top/',
+    origin: 'https://www.shaikhfaiz.top',
     credentials: true,
   })
 );
