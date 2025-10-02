@@ -102,67 +102,79 @@ export default function Header() {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:block">
-              <ul className="flex items-center gap-8">
-                {navItems.map((item) => {
-                  const isActivePath = pathname === item.href;
-                  return (
-                    <li key={item.name} className="relative group">
-                      <motion.button
-                        onClick={() => handleNav(item.href)}
-                        aria-current={isActivePath ? 'page' : undefined}
-                        className={`relative font-semibold tracking-[0.01em] focus:outline-none
-                          ${isScrolled ? 'text-teal-600' : 'text-white'}`}
-                        whileHover={{ y: -2, scale: 1.02 }}
-                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                      >
-                        {item.name}
-                        <motion.span
-                          aria-hidden
-                          className="absolute left-0 -bottom-1 h-[2px] w-full"
-                          initial={{ scaleX: isActivePath ? 1 : 0 }}
-                          animate={{ scaleX: isActivePath ? 1 : 0 }}
-                          whileHover={{ scaleX: 1 }}
-                          style={{
-                            transformOrigin: 'left',
-                            background: isScrolled
-                              ? `linear-gradient(90deg, ${TEAL}, ${TEAL_LIGHT})`
-                              : 'linear-gradient(90deg, rgba(255,255,255,0), #fff, rgba(255,255,255,0))',
-                          }}
-                          transition={{ duration: 0.28, ease: 'easeInOut' }}
-                        />
-                      </motion.button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
+           {/* Desktop Nav */}
+<nav className="hidden lg:block">
+  <ul className="flex items-center gap-8">
+    {navItems.map((item) => {
+      const isActivePath = pathname === item.href;
+      return (
+        <li key={item.name} className="relative group">
+          <motion.button
+            onClick={() => handleNav(item.href)}
+            aria-current={isActivePath ? 'page' : undefined}
+            className="relative font-semibold tracking-[0.01em] focus:outline-none text-teal-600"
+            whileHover={{ y: -2, scale: 1.02 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+          >
+            {item.name}
+            <motion.span
+              aria-hidden
+              className="absolute left-0 -bottom-1 h-[2px] w-full"
+              initial={{ scaleX: isActivePath ? 1 : 0 }}
+              animate={{ scaleX: isActivePath ? 1 : 0 }}
+              whileHover={{ scaleX: 1 }}
+              style={{
+                transformOrigin: 'left',
+                background: `linear-gradient(90deg, ${TEAL}, ${TEAL_LIGHT})`,
+              }}
+              transition={{ duration: 0.28, ease: 'easeInOut' }}
+            />
+          </motion.button>
+        </li>
+      );
+    })}
+  </ul>
+</nav>
+
 
             {/* Right side: contact + CTA */}
-            <div className="hidden lg:flex items-center gap-5">
-              <a
-                href="tel:+918888795875"
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-white hover:bg-white/20 transition"
-              >
-                <Phone size={18} />
-              </a>
-              <a
-                href="https://wa.me/918888795875"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-green-500 hover:bg-white/20 transition"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12.001 2.002c-5.514 0-10 4.486-10 10 0 1.766.464 3.49 1.345 5.01L2 22l5.104-1.335c1.47.801 3.125 1.223 4.897 1.223h.001c5.514 0 10-4.486 10-10s-4.486-9.998-10.001-9.998zm5.479 14.646c-.229.647-1.345 1.229-1.85 1.308-.496.072-1.109.104-1.792-.111-.413-.132-.943-.307-1.633-.6-2.873-1.242-4.739-4.146-4.88-4.34-.143-.193-1.163-1.545-1.163-2.946 0-1.401.737-2.091.998-2.379.26-.288.57-.361.76-.361.191 0 .382.002.548.01.178.007.414-.067.647.493.229.55.777 1.901.846 2.04.07.14.117.303.023.497-.094.193-.141.303-.276.464-.14.164-.295.366-.421.493-.14.14-.285.293-.122.574.163.28.725 1.195 1.557 1.933 1.07.953 1.973 1.249 2.254 1.388.28.14.445.117.61-.07.166-.188.7-.82.889-1.099.188-.28.377-.233.637-.14.26.094 1.647.776 1.928.916.28.14.467.21.537.328.07.117.07.682-.159 1.329z" />
-                </svg>
-              </a>
-              <button
-                onClick={() => handleNav('/pages/contact')}
-                className="px-5 py-2 rounded-full text-white font-semibold shadow-md transition hover:shadow-lg hover:scale-[1.02] bg-gradient-to-r from-teal to-teal-light"
-              >
-                Get Quote
-              </button>
-            </div>
+          <div className="hidden lg:flex items-center gap-5">
+  {/* Call */}
+  <a
+    href="tel:+919960669724"
+    className="flex items-center justify-center w-10 h-10 rounded-full bg-teal-500 text-white hover:bg-teal-600 transition-shadow shadow-md"
+  >
+    <Phone size={18} />
+  </a>
+
+  {/* WhatsApp */}
+  <a
+    href="https://wa.me/919960669724"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white hover:bg-green-600 transition-shadow shadow-md"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path d="M12.001 2.002c-5.514 0-10 4.486-10 10 0 1.766.464 3.49 1.345 5.01L2 22l5.104-1.335c1.47.801 3.125 1.223 4.897 1.223h.001c5.514 0 10-4.486 10-10s-4.486-9.998-10.001-9.998zm5.479 14.646c-.229.647-1.345 1.229-1.85 1.308-.496.072-1.109.104-1.792-.111-.413-.132-.943-.307-1.633-.6-2.873-1.242-4.739-4.146-4.88-4.34-.143-.193-1.163-1.545-1.163-2.946 0-1.401.737-2.091.998-2.379.26-.288.57-.361.76-.361.191 0 .382.002.548.01.178.007.414-.067.647.493.229.55.777 1.901.846 2.04.07.14.117.303.023.497-.094.193-.141.303-.276.464-.14.164-.295.366-.421.493-.14.14-.285.293-.122.574.163.28.725 1.195 1.557 1.933 1.07.953 1.973 1.249 2.254 1.388.28.14.445.117.61-.07.166-.188.7-.82.889-1.099.188-.28.377-.233.637-.14.26.094 1.647.776 1.928.916.28.14.467.21.537.328.07.117.07.682-.159 1.329z"/>
+    </svg>
+  </a>
+
+  {/* CTA Button */}
+  <button
+    onClick={() => handleNav('/pages/contact')}
+    className="px-5 py-2 rounded-full text-teal-500 font-semibold shadow-md transition hover:shadow-lg hover:scale-[1.02] bg-gradient-to-r from-teal to-teal-light"
+  >
+    Get Quote
+  </button>
+</div>
+
+
 
             {/* Mobile hamburger */}
             <button
