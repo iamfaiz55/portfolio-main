@@ -3,19 +3,20 @@ import { notFound } from "next/navigation";
 import ServiceDetails from "@/components/ServicesDetails";
 import type { Metadata } from "next";
 
-const base = process.env.NEXT_PUBLIC_BACKEND_URL;
+const base = process.env.NEXT_PUBLIC_BACKEND_URL || "https://portfolio-main-pied-zeta.vercel.app/api";
 
 export async function generateStaticParams() {
-  if (!base) return [];
+  if (!base) return [{ id: "dummy-id" }]; // fallback for build
   try {
     const res = await fetch(`${base}/services`, { next: { revalidate: 60 } });
-    if (!res.ok) return [];
+    if (!res.ok) return [{ id: "dummy-id" }];
     const list: Array<{ _id: string }> = await res.json();
     return list.map((s) => ({ id: s._id }));
   } catch {
-    return [];
+    return [{ id: "dummy-id" }];
   }
 }
+
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   if (!base || !params.id) return {};
