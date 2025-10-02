@@ -50,6 +50,9 @@ app.use('/api/projects', projectRoutes);
 app.get('/api/health', ( req: Request, res:Response) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
+app.use((req:Request, res:Response)) => {
+    res.status(404).json({ message: 'Route not found' });
+} 
 app.use('/api/uploads', express.static(
   path.join(process.cwd(), 'uploads'),
   {
